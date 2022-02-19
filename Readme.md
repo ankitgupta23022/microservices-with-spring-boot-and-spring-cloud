@@ -5,8 +5,8 @@ Contents:-
 
 - Established Communication between Microservices
 - Centralized Microservice Configuration with Spring Cloud Config Server
-- Using Spring Cloud Bus to exchange messages about Configuration updates
-- Simplify communication with other Microservices using Feign REST Client
+- Used Spring Cloud Bus to exchange messages about Configuration updates
+- Simplified communication with other Microservices using Feign REST Client
 - Implemented client side load balancing with Ribbon
 - Implemented dynamic scaling using Eureka Naming Server and Ribbon
 - Implemented API Gateway with Zuul
@@ -17,55 +17,55 @@ Contents:-
 
 #### Spring Cloud Config Server
 - Step 00 - 04 - Limits Microservice and Spring Cloud Config Server
-- Step 01 - Setting up Limits Microservice
-- Step 02 - Creating a hard coded limits service
-- Step 03 - Enhance limits service to pick up configuration from application properties
-- Step 04 - Setting up Spring Cloud Config Server
-- Step 05 - Installing Git
-- Step 06 - Creating Local Git Repository
-- Step 07 - Connect Spring Cloud Config Server to Local Git Repository
-- Step 08 - Configuration for Multiple Environments in Git Repository
-- Step 09 - Connect Limits Service to Spring Cloud Config Server
-- Step 10 - Configuring Profiles for Limits Service
-- Step 11 - A review of Spring Cloud Config Server
+- Step 01 - Set up Limits Microservice
+- Step 02 - Created a hard coded limits service
+- Step 03 - Enhanced limits service to pick up configuration from application properties
+- Step 04 - Set up Spring Cloud Config Server
+- Step 05 - Installed Git
+- Step 06 - Created Local Git Repository
+- Step 07 - Connected Spring Cloud Config Server to Local Git Repository
+- Step 08 - Configured for Multiple Environments in Git Repository
+- Step 09 - Connected Limits Service to Spring Cloud Config Server
+- Step 10 - Configured Profiles for Limits Service
+- Step 11 - Reviewed Spring Cloud Config Server
 
 #### Implementing 2 Microservices with Eureka Naming Server, Ribbon and Feign
 - Step 12 - Currency Conversion and Currency Exchange Microservices
-- Step 13 - Setting up Currency Exchange Microservice
-- Step 14 - Create a simple hard coded currency exchange service
-- Step 15 - Setting up Dynamic Port in the the Response
-- Step 16 - Configure JPA and Initialized Data
-- Step 17 - Create a JPA Repository
-- Step 18 - Setting up Currency Conversion Microservice
-- Step 19 - Creating a service for currency conversion
-- Step 20 - Invoking Currency Exchange Microservice from Currency Conversion Microservice
-- Step 21 - Using Feign REST Client for Service Invocation
-- Step 22 - Setting up client side load balancing with Ribbon
-- Step 23 - Running client side load balancing with Ribbon
-- Step 24 - Understand the need for a Naming Server
-- Step 25 - Setting up Eureka Naming Server
-- Step 26 - Connecting Currency Conversion Microservice to Eureka
-- Step 27 - Connecting Currency Exchange Microservice to Eureka
-- Step 28 - Distributing calls using Eureka and Ribbon
-- Step 29 - A review of implementing Eureka, Ribbon and Feign
+- Step 13 - Set up Currency Exchange Microservice
+- Step 14 - Created a simple hard coded currency exchange service
+- Step 15 - Set up Dynamic Port in the the Response
+- Step 16 - Configured JPA and Initialized Data
+- Step 17 - Created a JPA Repository
+- Step 18 - Set up Currency Conversion Microservice
+- Step 19 - Created a service for currency conversion
+- Step 20 - Invoked Currency Exchange Microservice from Currency Conversion Microservice
+- Step 21 - Used Feign REST Client for Service Invocation
+- Step 22 - Set up client side load balancing with Ribbon
+- Step 23 - Ran client side load balancing with Ribbon
+- Step 24 - Naming Server
+- Step 25 - Set up Eureka Naming Server
+- Step 26 - Connected Currency Conversion Microservice to Eureka
+- Step 27 - Connected Currency Exchange Microservice to Eureka
+- Step 28 - Distributed calls using Eureka and Ribbon
+- Step 29 - Implemented Eureka, Ribbon and Feign
 
 #### API Gateways and Distributed Tracing
 - Step 30 - API Gateways
-- Step 31 - Setting up Zuul API Gateway
-- Step 32 - Implementing Zuul Logging Filter
-- Step 33 - Executing a request through Zuul API Gateway
-- Step 34 - Setting up Zuul API Gateway between microservice invocations
-- Step 35 - Introduction to Distributed Tracing
-- Step 36 - Implementing Spring Cloud Sleuth
-- Step 37 - Introduction to Distributed Tracing with Zipkin
-- Step 38 - Installing Rabbit MQ
-- Step 39 - Setting up Distributed Tracing with Zipkin
-- Step 40 - Connecting microservices to Zipkin
-- Step 41 - Using Zipkin UI Dashboard to trace requests
+- Step 31 - Set up Zuul API Gateway
+- Step 32 - Implemented Zuul Logging Filter
+- Step 33 - Executed a request through Zuul API Gateway
+- Step 34 - Set up Zuul API Gateway between microservice invocations
+- Step 35 - Distributed Tracing
+- Step 36 - Implemented Spring Cloud Sleuth
+- Step 37 - Distributed Tracing with Zipkin
+- Step 38 - Installed Rabbit MQ
+- Step 39 - Set up Distributed Tracing with Zipkin
+- Step 40 - Connected microservices to Zipkin
+- Step 41 - Used Zipkin UI Dashboard to trace requests
 
 #### Spring Cloud Bus and Hysterix
 - Step 42 - Spring Cloud Bus
-- Step 43 - Implementing Spring Cloud Bus
+- Step 43 - Implemented Spring Cloud Bus
 - Step 44 - Fault Tolerance with Hystrix
 
 
@@ -137,3 +137,20 @@ java -jar zipkin-server-2.12.9-exec.jar (here give the name of the jar)
 ## VM Argument (To run the application with different port)
 
 -Dserver.port=8001
+
+##In short when you setup the application for the 1st time you have to:-(To be performed only in intelliJ)
+
+- Install erlang and RabbitMQ for windows
+- Download and place zipkin-server-2.12.9-exec.jar in your main directory
+- Update the gitrepo path in application.properties file of spring-cloud-config-server
+- Initialise an empty git repository in git-localconfig-repo
+- In the base folder run :-
+  - set RABBIT_URI=amqp://localhost
+  - java -jar zipkin-server-2.12.9-exec.jar
+- Then start all your services in the following order
+  - netflix-eureka-naming-server
+  - netflix-zuul-api-gateway-server
+  - currency-exchange-service
+  - currency-conversion-service
+  - spring-cloud-config-server
+  - limits-service
